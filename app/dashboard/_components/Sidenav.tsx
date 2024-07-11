@@ -7,6 +7,7 @@ import {
   WalletCards,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Sidenav() {
@@ -21,11 +22,6 @@ export default function Sidenav() {
       name: "History",
       icon: <FileClock className="h-5 w-5" />,
       path: "/dashboard/history",
-    },
-    {
-      name: "Billing",
-      icon: <WalletCards className="h-5 w-5" />,
-      path: "/dashboard/billing",
     },
     {
       name: "Settings",
@@ -45,14 +41,15 @@ export default function Sidenav() {
       <div className="mt-6">
         {menuList.map((data, index) => {
           return (
-            <div
+            <Link
+              href={`${data.path}`}
               className={`flex items-center gap-2 mb-2 p-3 hover:bg-primary hover:text-white rounded-md cursor-pointer ${
                 path === data.path && "bg-primary text-white"
               }`}
               key={index}
             >
               {data.icon} {data.name}
-            </div>
+            </Link>
           );
         })}
       </div>
